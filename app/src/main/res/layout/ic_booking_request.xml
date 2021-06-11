@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/reqServName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginLeft="31dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginRight="73dp"
+        android:fontFamily="@font/catamaran_semibold"
+        android:text="Seven computer club"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/deleteRequestBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteRequestBtn"
+        android:layout_width="44dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginRight="52dp"
+        android:background="@drawable/ic_trash_icon"
+        app:backgroundTint="#F44336"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reqServName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/reqServCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Games"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/reqServName"
+        app:layout_constraintTop_toBottomOf="@+id/reqServName" />
+
+    <RatingBar
+        android:id="@+id/reqServRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:max="5"
+        app:layout_constraintEnd_toStartOf="@+id/reqMoreBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reqServCategory" />
+
+    <Button
+        android:id="@+id/reqMoreBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="More"
+        app:backgroundTint="#3F51B5"
+        app:layout_constraintBottom_toBottomOf="@+id/reqServRating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/reqServRating" />
+
+    <TextView
+        android:id="@+id/bookingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginBottom="9dp"
+        android:fontFamily="@font/baloo"
+        android:text="00:02:30"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/reqMoreBtn"
+        app:layout_constraintStart_toStartOf="@+id/reqMoreBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
