@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="stars">
-        <item>None</item>
+        <item>Rating</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

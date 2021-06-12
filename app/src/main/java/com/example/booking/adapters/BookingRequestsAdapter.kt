@@ -1,6 +1,7 @@
 package com.example.booking.adapters
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,7 @@ private var api: RequestsApi) :
         var learnMoreBtn: Button
         var bookingTime: TextView
         var deleteBtn: Button
+        var infoBtn: Button
         init {
             name = request.findViewById(R.id.reqServName)
             rating = request.findViewById(R.id.reqServRating)
@@ -37,6 +39,7 @@ private var api: RequestsApi) :
             categoryName = request.findViewById(R.id.reqServCategory)
             bookingTime = request.findViewById(R.id.bookingTime)
             deleteBtn = request.findViewById(R.id.deleteRequestBtn)
+            infoBtn = request.findViewById(R.id.reqServInfo)
         }
     }
 
@@ -74,6 +77,13 @@ private var api: RequestsApi) :
                 }
 
             })
+        }
+
+        holder.infoBtn.setOnClickListener {
+            val info = requests[position].info
+            AlertDialog.Builder(activity).setMessage(if(info.any()) info else "You didn't wish anything").setTitle("Request wishes").setPositiveButton("Close") { dialog, id ->
+                dialog.cancel()
+            }.show()
         }
     }
 

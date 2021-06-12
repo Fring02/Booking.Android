@@ -30,15 +30,16 @@ import retrofit2.Response
 class ServiceActivity : AppCompatActivity() {
     private lateinit var servicesApi: ServicesApi
     private lateinit var requestsApi: RequestsApi
+    private var symbolLayerIconFeatureList: MutableList<Feature> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token))
         setContentView(R.layout.activity_service)
         serviceMap.onCreate(savedInstanceState)
         serviceMap.getMapAsync{ mapboxMap ->
-            val symbolLayerIconFeatureList: MutableList<Feature> = mutableListOf(Feature.fromGeometry(
+            /*val symbolLayerIconFeatureList: MutableList<Feature> = mutableListOf(Feature.fromGeometry(
                 Point.fromLngLat(-56.990533, -30.583266)
-            ))
+            ))*/
             mapboxMap.setStyle(
                 Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
                     .withImage(
@@ -75,12 +76,14 @@ class ServiceActivity : AppCompatActivity() {
             ) {
                 val service = response.body()
                 serviceName.text = service?.name
-                serviceLocation.text = "${serviceLocation.text}: ${service?.location}"
-                val website = service?.website ?: "Absent"
-                serviceWebsite.text = "${serviceWebsite.text}: ${website}"
+                serviceLocation.text = "${service?.location}"
+                val website = service?.website ?: "No website"
+                serviceWebsite.text = website
                 serviceRating.rating = service?.rating?.toFloat()!!
                 serviceTime.text = service.workingTime
                 serviceDesc.text = service.description
+                serviceCategory.text = service.category.name
+                symbolLayerIconFeatureList.add(Feature.fromGeometry(Point.fromLngLat(service.longitude, service.latitude)))
                 val image = service.images.firstOrNull()
                 val url: String
                 url = image?.path ?: "https://ufodex.io/img/placeholder.png"
@@ -110,6 +113,7 @@ class ServiceActivity : AppCompatActivity() {
                     if (ordered == true) {
                         orderBtn.text = "Ordered"
                         orderBtn.setBackgroundColor(resources.getColor(android.R.color.holo_green_light))
+                        orderBtn.isClickable = false
                     } else {
                         orderBtn.setOnClickListener {
                             OrderDialog(serviceId, requestsApi).show(

@@ -13,6 +13,7 @@ import com.example.booking.activities.LoginActivity
 import com.example.booking.apis.RequestsApi
 import com.example.booking.models.BookingRequest
 import com.example.booking.utils.PreferencesFactory
+import kotlinx.android.synthetic.main.activity_service.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,6 +78,10 @@ class OrderDialog(private var serviceId: String, private var api: RequestsApi) :
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     if(response.isSuccessful){
                         dialog?.cancel()
+                        val orderBtn = activity!!.findViewById<Button>(R.id.orderBtn)
+                        orderBtn.text = "Ordered"
+                        orderBtn.setBackgroundColor(resources.getColor(android.R.color.holo_green_light))
+                        orderBtn.isClickable = false
                     } else {
                         if(response.code() == 401 || response.code() == 403){
                             dialog?.cancel()

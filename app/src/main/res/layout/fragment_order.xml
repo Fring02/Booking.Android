@@ -1,53 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:textAlignment="center"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
 
     <EditText
         android:id="@+id/days"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Days"
         android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginBottom="30dp"/>
 
     <EditText
         android:id="@+id/hours"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="Hours"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/days"
-        app:layout_constraintTop_toBottomOf="@+id/days" />
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="75dp"
+        android:layout_marginBottom="30dp" />
 
     <EditText
         android:id="@+id/minutes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
         android:ems="10"
         android:hint="Minutes"
         android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/info"
-        app:layout_constraintStart_toStartOf="@+id/info" />
-
-    <Button
-        android:id="@+id/submitOrderBtn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="296dp"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="134dp"
+        android:layout_marginBottom="30dp" />
 
     <EditText
         android:id="@+id/info"
@@ -58,7 +50,14 @@
         android:hint="Your wishes"
         android:inputType="textMultiLine"
         android:lines="4"
-        app:layout_constraintBottom_toTopOf="@+id/submitOrderBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="188dp"
+        android:layout_marginBottom="30dp" />
+
+    <Button
+        android:id="@+id/submitOrderBtn"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteY="296dp" />
+</LinearLayout>

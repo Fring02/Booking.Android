@@ -23,17 +23,63 @@
             android:orientation="vertical"
             android:textAlignment="center">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/returnToServicesBtn"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:clickable="true"
-                app:backgroundTint="#42A3F1"
-                app:rippleColor="#000000"
-                app:srcCompat="?attr/homeAsUpIndicator" />
+                android:layout_height="74dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/returnToServicesBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    app:backgroundTint="#42A3F1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="#000000"
+                    app:srcCompat="?attr/homeAsUpIndicator" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Category:"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/serviceCategory" />
+
+                <TextView
+                    android:id="@+id/serviceCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Games"
+                    android:textColor="#2196F3"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.68" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/serviceImage"
+                android:layout_width="360dp"
+                android:layout_height="299dp"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/serviceName"
@@ -41,36 +87,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="30dp"
-                android:fontFamily="@font/biryani_extrabold"
+                android:fontFamily="@font/catamaran_semibold"
                 android:text="Seven Computer Club"
                 android:textColor="#000000"
                 android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/serviceLocation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/amiko_semibold"
-                android:text="Location"
-                android:textColor="#000000"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/serviceWebsite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="40dp"
-                android:text="Website"
-                android:textColor="#00BCD4"
-                android:textSize="24sp"
-                android:textStyle="italic" />
-
-            <ImageView
-                android:id="@+id/serviceImage"
-                android:layout_width="match_parent"
-                android:layout_height="311dp"
-                tools:srcCompat="@tools:sample/avatars" />
 
             <RatingBar
                 android:id="@+id/serviceRating"
@@ -81,15 +101,38 @@
                 android:gravity="center_horizontal" />
 
             <TextView
+                android:id="@+id/serviceLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/roboto"
+                android:text="Location"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/serviceWebsite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center_horizontal"
+                android:text="Website"
+                android:textAlignment="center"
+                android:textColor="#00BCD4"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <TextView
                 android:id="@+id/serviceTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
+                android:fontFamily="@font/biryani_extrabold"
                 android:gravity="center"
                 android:text="00:00-23:59"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textColor="#3F51B5"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -98,9 +141,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
-                android:fontFamily="@font/bitter"
+                android:fontFamily="@font/rubik"
+                android:textAlignment="center"
                 android:text="t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:gravity="center_horizontal" />
 
             <com.mapbox.mapboxsdk.maps.MapView
                 android:id="@+id/serviceMap"
@@ -110,12 +156,13 @@
                 mapbox:mapbox_cameraTargetLat="-32.557013"
                 mapbox:mapbox_cameraTargetLng="-56.149056"
                 mapbox:mapbox_cameraZoom="5.526846" />
+
             <Button
                 android:id="@+id/orderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Order"
-                app:backgroundTint="#2196F3" />
+                app:backgroundTint="#4CAF50" />
 
         </LinearLayout>
     </ScrollView>

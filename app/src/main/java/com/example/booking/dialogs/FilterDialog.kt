@@ -39,7 +39,7 @@ class FilterDialog : DialogFragment() {
             putExtra("workingTime", filterTime.text.toString()).
                     putExtra("categoryName", if(categories.selectedItem.toString() == "None")
                         "" else categories.selectedItem.toString()).
-                    putExtra("rating", if(rating.selectedItem.toString() == "None") 0 else rating.selectedItem.toString().toInt())
+                    putExtra("rating", if(rating.selectedItem.toString() == "Rating") 0 else rating.selectedItem.toString().toInt())
             activity?.finish()
             activity?.overridePendingTransition(0, 0)
             startActivity(intent)

@@ -14,10 +14,6 @@ import com.example.booking.models.RegistrationUser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import com.example.booking.config.ApiSettings
 import com.example.booking.utils.BookingApi
 import com.example.booking.utils.PreferencesFactory
 import kotlinx.android.synthetic.main.activity_login.*
