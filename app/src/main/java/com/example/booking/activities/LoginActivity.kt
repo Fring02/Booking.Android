@@ -1,13 +1,12 @@
 package com.example.booking.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.auth0.android.jwt.JWT
 import com.example.booking.R
 import com.example.booking.apis.UsersApi
-import com.example.booking.config.ApiSettings
 import com.example.booking.exceptions.ApiException
 import com.example.booking.exceptions.ValidateException
 import com.example.booking.models.LoginUser
@@ -17,10 +16,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import kotlin.error
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var api: UsersApi
@@ -79,4 +74,5 @@ class LoginActivity : AppCompatActivity() {
     private fun validateUser(user: LoginUser) : Boolean {
         return user.email.any() && user.password.any()
     }
+
 }

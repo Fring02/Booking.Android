@@ -15,8 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_profile.*
 
 class ProfileActivity : AppCompatActivity() {
-    /*private var usersApi: UsersApi = BookingApi.getInstance()!!.create(UsersApi::class.java)
-    private var requestsApi: RequestsApi = BookingApi.getInstance()!!.create(RequestsApi::class.java)*/
     private lateinit var usersApi: UsersApi
     private lateinit var requestsApi: RequestsApi
     override fun onCreate(savedInstanceState: Bundle?) {

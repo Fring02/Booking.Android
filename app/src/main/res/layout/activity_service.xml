@@ -75,11 +75,10 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/serviceImage"
-                android:layout_width="360dp"
-                android:layout_height="299dp"
-                tools:srcCompat="@tools:sample/avatars" />
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imagePager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/serviceName"
@@ -98,6 +97,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="20dp"
+                android:clickable="true"
                 android:gravity="center_horizontal" />
 
             <TextView

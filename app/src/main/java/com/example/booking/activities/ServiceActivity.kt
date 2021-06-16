@@ -1,16 +1,23 @@
 package com.example.booking.activities
 
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.ImageFormat
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.booking.R
+import com.example.booking.adapters.ServiceImagesAdapter
 import com.example.booking.apis.RequestsApi
 import com.example.booking.apis.ServicesApi
 import com.example.booking.config.ApiSettings.ICON_ID
 import com.example.booking.config.ApiSettings.LAYER_ID
 import com.example.booking.config.ApiSettings.SOURCE_ID
 import com.example.booking.dialogs.OrderDialog
+import com.example.booking.fragments.ServiceImageFragment
 import com.example.booking.models.LeisureService
+import com.example.booking.models.UpdateService
 import com.example.booking.utils.BookingApi
 import com.example.booking.utils.LoadImageTask
 import com.example.booking.utils.PreferencesFactory
@@ -37,9 +44,6 @@ class ServiceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_service)
         serviceMap.onCreate(savedInstanceState)
         serviceMap.getMapAsync{ mapboxMap ->
-            /*val symbolLayerIconFeatureList: MutableList<Feature> = mutableListOf(Feature.fromGeometry(
-                Point.fromLngLat(-56.990533, -30.583266)
-            ))*/
             mapboxMap.setStyle(
                 Style.Builder().fromUri("mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41")
                     .withImage(
@@ -62,6 +66,8 @@ class ServiceActivity : AppCompatActivity() {
         requestsApi = BookingApi.getInstance()!!.create(RequestsApi::class.java)
 
         returnToServicesBtn.setOnClickListener { finish() }
+
+
     }
 
 
@@ -71,8 +77,8 @@ class ServiceActivity : AppCompatActivity() {
         val servicesCall = intent.getStringExtra("serviceId")?.let { servicesApi.getServiceById(it) }
         servicesCall?.enqueue(object : Callback<LeisureService> {
             override fun onResponse(
-                call: Call<LeisureService>,
-                response: Response<LeisureService>
+                    call: Call<LeisureService>,
+                    response: Response<LeisureService>
             ) {
                 val service = response.body()
                 serviceName.text = service?.name
@@ -84,16 +90,38 @@ class ServiceActivity : AppCompatActivity() {
                 serviceDesc.text = service.description
                 serviceCategory.text = service.category.name
                 symbolLayerIconFeatureList.add(Feature.fromGeometry(Point.fromLngLat(service.longitude, service.latitude)))
-                val image = service.images.firstOrNull()
-                val url: String
-                url = image?.path ?: "https://ufodex.io/img/placeholder.png"
-                LoadImageTask(serviceImage).execute(url)
+                serviceRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+                    if (fromUser) {
+                        val token = PreferencesFactory.getPreferences(this@ServiceActivity).getString("token", "")
+                        servicesApi.updateServiceRating(service.id, UpdateService(rating.toInt()), "Bearer $token")
+                                .enqueue(object : Callback<String> {
+                                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                                        if(!response.isSuccessful) {
+                                            Toast.makeText(this@ServiceActivity, "Failed to put rating", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    override fun onFailure(call: Call<String>, t: Throwable) {
+                                        throw t
+                                    }
+                                })
+                    }
+                }
+                val images = service.images
+                val imageFragments = mutableListOf<Fragment>()
+                if (!images.any()) {
+                    imageFragments.add(ServiceImageFragment("https://ufodex.io/img/placeholder.png"))
+                } else {
+                    for (i in images) {
+                        imageFragments.add(ServiceImageFragment(i.path))
+                    }
+                }
+                imagePager.adapter = ServiceImagesAdapter(this@ServiceActivity, imageFragments)
                 val userId =
-                    PreferencesFactory.getPreferences(this@ServiceActivity.applicationContext)
-                        .getString(
-                            "userId",
-                            ""
-                        )
+                        PreferencesFactory.getPreferences(this@ServiceActivity.applicationContext)
+                                .getString(
+                                        "userId",
+                                        ""
+                                )
                 this@ServiceActivity.checkRequest(userId!!, service.id)
             }
 

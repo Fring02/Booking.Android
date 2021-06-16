@@ -1,150 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.RegistrationActivity">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_height="match_parent" android:layout_width="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activities.RegistrationActivity">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
             android:fontFamily="@font/roboto_medium"
             android:text="Sign up"
             android:textColor="@color/black"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/error"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/firstname_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="7dp"
-            app:layout_constraintBottom_toBottomOf="@+id/firstname"
-            app:layout_constraintEnd_toStartOf="@+id/firstname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_user_icon" />
 
         <EditText
             android:id="@+id/firstname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
-            android:layout_marginBottom="17dp"
             android:fontFamily="@font/catamaran_semibold"
             android:hint="Firstname"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:backgroundTint="#000"
-            app:layout_constraintBottom_toTopOf="@+id/lastname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/firstname_icon"
             app:layout_constraintTop_toBottomOf="@+id/error" />
-
-        <ImageView
-            android:id="@+id/lastname_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="9dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lastname"
-            app:layout_constraintEnd_toStartOf="@+id/lastname"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_user_icon" />
-
-        <EditText
-            android:id="@+id/lastname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="26dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginBottom="22dp"
-            android:fontFamily="@font/catamaran_semibold"
-            android:hint="Lastname"
-            android:textColor="@color/black"
-            app:backgroundTint="#000"
-            app:layout_constraintBottom_toTopOf="@+id/email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/lastname_icon"
-            app:layout_constraintTop_toBottomOf="@+id/firstname" />
-
-        <ImageView
-            android:id="@+id/email_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="#000"
-            app:layout_constraintBottom_toBottomOf="@+id/email"
-            app:layout_constraintEnd_toStartOf="@+id/email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_email_icon" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="26dp"
-            android:layout_marginRight="26dp"
-            android:layout_marginBottom="21dp"
-            android:fontFamily="@font/catamaran_semibold"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black"
-            app:backgroundTint="#000"
-            app:layout_constraintBottom_toTopOf="@+id/phone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/email_icon"
-            app:layout_constraintTop_toBottomOf="@+id/lastname" />
-
-        <ImageView
-            android:id="@+id/phone_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/phone"
-            app:layout_constraintEnd_toStartOf="@+id/phone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_phone_icon" />
 
         <EditText
             android:id="@+id/phone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
-            android:layout_marginBottom="24dp"
             android:fontFamily="@font/catamaran_semibold"
             android:hint="Phone"
             android:inputType="phone"
             android:textColor="@color/black"
             app:backgroundTint="#000"
-            app:layout_constraintBottom_toTopOf="@+id/password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/phone_icon"
             app:layout_constraintTop_toBottomOf="@+id/email" />
@@ -164,12 +66,98 @@
             app:srcCompat="@drawable/ic_password_icon" />
 
         <EditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
+            android:fontFamily="@font/catamaran_semibold"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            app:backgroundTint="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/email_icon"
+            app:layout_constraintTop_toBottomOf="@+id/lastname" />
+
+        <ImageView
+            android:id="@+id/firstname_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="7dp"
+            app:layout_constraintBottom_toBottomOf="@+id/firstname"
+            app:layout_constraintEnd_toStartOf="@+id/firstname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_user_icon" />
+
+        <ImageView
+            android:id="@+id/phone_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/phone"
+            app:layout_constraintEnd_toStartOf="@+id/phone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_phone_icon" />
+
+        <EditText
+            android:id="@+id/lastname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginRight="26dp"
+            android:fontFamily="@font/catamaran_semibold"
+            android:hint="Lastname"
+            android:textColor="@color/black"
+            app:backgroundTint="#000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lastname_icon"
+            app:layout_constraintTop_toBottomOf="@+id/firstname" />
+
+        <ImageView
+            android:id="@+id/email_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/email"
+            app:layout_constraintEnd_toStartOf="@+id/email"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_email_icon" />
+
+        <Button
+            android:id="@+id/regBtn"
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Sign up"
+            app:backgroundTint="#2196F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password" />
+
+        <EditText
             android:id="@+id/password"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="26dp"
             android:layout_marginRight="26dp"
-            android:layout_marginBottom="14dp"
             android:backgroundTint="#000"
             android:ems="10"
             android:fontFamily="@font/catamaran_semibold"
@@ -177,110 +165,65 @@
             android:inputType="textPassword"
             android:singleLine="false"
             android:textColor="@color/black"
-            app:layout_constraintBottom_toTopOf="@+id/regBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/password_icon"
             app:layout_constraintTop_toBottomOf="@+id/phone" />
 
-        <Button
-            android:id="@+id/regBtn"
-            android:layout_width="222dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
-            android:text="Sign up"
-            app:backgroundTint="#2196F3"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/password" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="23dp"
-            android:text="or"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/regBtn2"
-            app:layout_constraintEnd_toEndOf="@+id/regBtn"
-            app:layout_constraintStart_toStartOf="@+id/regBtn"
-            app:layout_constraintTop_toBottomOf="@+id/regBtn" />
-
         <ImageView
-            android:id="@+id/imageView11"
+            android:id="@+id/lastname_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/regBtn2"
-            app:layout_constraintEnd_toStartOf="@+id/regBtn2"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/lastname"
+            app:layout_constraintEnd_toStartOf="@+id/lastname"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/googleg_standard_color_18" />
+            app:srcCompat="@drawable/ic_user_icon" />
 
-        <Button
-            android:id="@+id/regBtn2"
-            android:layout_width="222dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="93dp"
-            android:layout_marginRight="93dp"
-            android:layout_marginBottom="29dp"
-            android:text="Sign up with Google"
-            android:textColor="@color/black"
-            app:backgroundTint="#fff"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView11"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:strokeColor="#000000"
-            app:strokeWidth="2dp" />
 
         <TextView
             android:id="@+id/error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="21dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="36dp"
             android:text="Errors"
             android:textColor="#F44336"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/firstname"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/textView4"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="23dp"
-            android:layout_marginRight="23dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginLeft="48dp"
             android:text="Already have an account?"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/signInBtn"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/regBtn2" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/signInBtn"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/signInBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="43dp"
             android:text="Sign in"
             android:textColor="#2196F3"
             android:textSize="18sp"
             app:backgroundTint="#fff"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/regBtn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
