@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.booking.R
+import com.example.booking.adapters.CommentsAdapter
 import com.example.booking.adapters.ServiceImagesAdapter
+import com.example.booking.apis.CommentsApi
 import com.example.booking.apis.RequestsApi
 import com.example.booking.apis.ServicesApi
 import com.example.booking.config.ApiSettings.ICON_ID
@@ -16,6 +19,8 @@ import com.example.booking.config.ApiSettings.LAYER_ID
 import com.example.booking.config.ApiSettings.SOURCE_ID
 import com.example.booking.dialogs.OrderDialog
 import com.example.booking.fragments.ServiceImageFragment
+import com.example.booking.models.Comment
+import com.example.booking.models.CreateComment
 import com.example.booking.models.LeisureService
 import com.example.booking.models.UpdateService
 import com.example.booking.utils.BookingApi
@@ -37,6 +42,7 @@ import retrofit2.Response
 class ServiceActivity : AppCompatActivity() {
     private lateinit var servicesApi: ServicesApi
     private lateinit var requestsApi: RequestsApi
+    private lateinit var commentsApi: CommentsApi
     private var symbolLayerIconFeatureList: MutableList<Feature> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,9 +70,8 @@ class ServiceActivity : AppCompatActivity() {
         servicesApi = BookingApi.getInstance()!!.create(ServicesApi::class.java)
         loadService()
         requestsApi = BookingApi.getInstance()!!.create(RequestsApi::class.java)
-
+        commentsApi = BookingApi.getInstance()!!.create(CommentsApi::class.java)
         returnToServicesBtn.setOnClickListener { finish() }
-
 
     }
 
@@ -80,12 +85,12 @@ class ServiceActivity : AppCompatActivity() {
                     call: Call<LeisureService>,
                     response: Response<LeisureService>
             ) {
-                val service = response.body()
-                serviceName.text = service?.name
-                serviceLocation.text = "${service?.location}"
-                val website = service?.website ?: "No website"
+                val service = response.body()!!
+                serviceName.text = service.name
+                serviceLocation.text = service.location
+                val website = service.website ?: "No website"
                 serviceWebsite.text = website
-                serviceRating.rating = service?.rating?.toFloat()!!
+                serviceRating.rating = service.rating.toFloat()
                 serviceTime.text = service.workingTime
                 serviceDesc.text = service.description
                 serviceCategory.text = service.category.name
@@ -96,16 +101,18 @@ class ServiceActivity : AppCompatActivity() {
                         servicesApi.updateServiceRating(service.id, UpdateService(rating.toInt()), "Bearer $token")
                                 .enqueue(object : Callback<String> {
                                     override fun onResponse(call: Call<String>, response: Response<String>) {
-                                        if(!response.isSuccessful) {
+                                        if (!response.isSuccessful) {
                                             Toast.makeText(this@ServiceActivity, "Failed to put rating", Toast.LENGTH_SHORT).show()
                                         }
                                     }
+
                                     override fun onFailure(call: Call<String>, t: Throwable) {
                                         throw t
                                     }
                                 })
                     }
                 }
+                loadComments(service.id)
                 val images = service.images
                 val imageFragments = mutableListOf<Fragment>()
                 if (!images.any()) {
@@ -122,10 +129,44 @@ class ServiceActivity : AppCompatActivity() {
                                         "userId",
                                         ""
                                 )
+                commentBtn.setOnClickListener {
+                    val text = commentText.text.toString()
+                    val token = PreferencesFactory.getPreferences(this@ServiceActivity.applicationContext).getString("token","")!!
+                    commentsApi.createComment(CreateComment(userId!!, service.id, text), "Bearer $token").enqueue(object : Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            if(response.isSuccessful) {
+                                finish()
+                                overridePendingTransition(0, 0)
+                                startActivity(Intent(this@ServiceActivity, ServiceActivity::class.java))
+                                overridePendingTransition(0,0)
+                            }
+                        }
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            throw t
+                        }
+                    })
+                }
                 this@ServiceActivity.checkRequest(userId!!, service.id)
+
             }
 
             override fun onFailure(call: Call<LeisureService>, t: Throwable) {
+                throw t
+            }
+        })
+    }
+
+    private fun loadComments(serviceId: String) {
+        commentsApi.getComments(serviceId).enqueue(object : Callback<List<Comment>>{
+            override fun onResponse(call: Call<List<Comment>>, response: Response<List<Comment>>) {
+                val comments = response.body()!!
+                commentsRecyclerView.apply {
+                    layoutManager = LinearLayoutManager(this@ServiceActivity)
+                    adapter = CommentsAdapter(comments)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Comment>>, t: Throwable) {
                 throw t
             }
         })

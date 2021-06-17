@@ -161,8 +161,37 @@
                 android:id="@+id/orderBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
                 android:text="Order"
                 app:backgroundTint="#4CAF50" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/commentsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <EditText
+                android:id="@+id/commentText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDEDED"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Your commentaries..."
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/commentBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFC107"
+                android:text="Submit"
+                app:backgroundTint="#00BCD4" />
 
         </LinearLayout>
     </ScrollView>
